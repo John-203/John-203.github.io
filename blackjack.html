@@ -11,6 +11,7 @@
             width: 400px;
             height: 200px;
             background-color: rgb(254, 123, 44);
+            display: none;
         }
 
         #result {
@@ -18,26 +19,237 @@
             height: 200px;
             background-color: rgb(44, 254, 145);
             float: left;
+            display: none;
         }
 
-        #box {
+
+
+        table th {
+            text-align: center;
+            text-decoration: none;
+            font-weight: normal;
+            padding: 3px 6px 3px 6px;
             width: 200px;
-            height: 200px;
+        }
+
+        table td {
+            vertical-align: center;
+            text-align: center;
+            padding: 3px 6px 3px 6px;
+            margin: 0px;
+        }
+
+        .body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #bulletin {
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 1000px;
+            width: auto;
+            background-image: url(image/table.jpg);
+            background-size: 100% 100%;
+            position: relative;
+        }
+
+        .choice {
+            display: flex;
+            justify-content: center;
+            padding-top: 20px;
+            gap: 40px;
+
+        }
+
+        .butt {
+            width: 160px;
+            height: 50px;
+            cursor: pointer;
+        }
+
+        .biaoti {
+            font-size: 40px;
+            text-align: center;
+        }
+
+        #tableboard_c {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        #tableboard_p {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .main {
+            width: 80%;
+            text-align: center;
+        }
+
+        .score {
+            height: 150px;
+            width: 105px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 40px;
+        }
+
+        #biaoqing {
+            cursor: pointer;
+            height: 300px;
+            width: 300px;
+            margin-left: 583px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+
+        }
+
+        #computer {
+            box-shadow: 5px 5px 10px #131313;
+        }
+
+        #player {
+            box-shadow: 5px 5px 10px #131313;
+        }
+
+        .laba {
+            width: 60px;
+            height: 60px;
+            position: absolute;
+            cursor: pointer;
+            border-radius: 50%;
+            top: 20px;
+            right: 40px;
+        }
+
+        .guize {
+            width: 60px;
+            height: 60px;
+            position: absolute;
+            border-radius: 50%;
+            top: 16px;
+            right: 110px;
+            cursor: pointer;
+        }
+
+        #wenben {
+            position: absolute;
+            display: none;
+            width: 1120px;
+            height: 720px;
             background-color: rgb(0, 0, 0);
-            float: left;
-            background-image: url();
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+
+        }
+
+        #cha {
+            cursor: pointer;
+            border-radius: 50%;
+            float:right;
+            margin-top:15px;
+            margin-right: 10px;
+
+        }
+
+        #zhenwen{
+            display: flex;
+            height: 100%;
+            background-color: rgb(0, 0, 0);
+            clear: both;
+            justify-content: space-around;
         }
     </style>
 </head>
 
 <body>
-    <input id="act1" type="button" onclick="hit();return false" value="HIT">
-    <input id="act2" type="button" onclick="stand();return false" value="STAND">
-    <input id="act3" type="button" onclick="restart();return false" value="RESTART">
     <div id="out"></div>
     <div id="result"></div>
     <br />
+    <div class="container">
+        <div class="main">
+            <div class="laba" onclick="bgm();">
+                <img src="image\喇叭.png" width="50px" height="50px">
+            </div>
+            <div class="guize" onclick="kai()">
+                <img src="image\规则.png" width="50px" height="58px">
+            </div>
+            <div id="wenben">
+                <div id="cha" onclick="guan();"><img src="image\cha.png" width="20px" height="20px"></div>
+                <div id="zhenwen"><img src="image\guize_1.png"width="450px" height="700px" ><img src="image\guize_2.png" width="450px" height="700px"></div>
+            </div>
+            <div class="biaoti">
+                Black Jack
+            </div>
 
+            <hr>
+            <table id="tableboard_c">
+                <tr>
+                    <td />
+                    <td />
+                    <td />
+                    <td />
+                    <td />
+                    <td />
+                    <td />
+                    <td />
+                    <td />
+                    <td />
+                    <td />
+                    <td><img src="image\duwang.png" width="160px" height="160px" id="computer" /></td>
+                </tr>
+
+            </table>
+
+            <div id="biaoqing" onmousedown="tuo()" onmouseup="dai()">
+                <img src="image\a.webp" width="300px" height="300px" />
+            </div>
+
+            <table id="tableboard_p">
+                <tr>
+                    <td><img src="image\player.png" width="160px" height="160px" id="player" /></td>
+                    <td />
+                    <td />
+                    <td />
+                    <td />
+                    <td />
+                    <td />
+                    <td />
+                    <td />
+                    <td />
+                    <td />
+                    <td />
+                </tr>
+            </table>
+            <hr>
+            <br>
+            <div id="bulletin">请做出选择</div>
+            <div class="choice">
+                <input type="button" id="hit" class="butt" value="加一张牌" onclick="hit();" />
+                <input type="button" id="stand" value="我不要了" class="butt" onclick="stand();" />
+                <input type="button" id="restart" value="再玩一局" class="butt" onclick="restart();" />
+            </div>
+
+        </div>
+        <audio autoplay="autoplay" loop="loop" preload="auto" id="bgm" src="image\bgm.mp3">
+
+
+        </audio>
+
+    </div>
     <script>
         //document.body.innerHTML = '<input id="act1" type="button" onclick="hit();return false" value="HIT">';
         //document.body.innerHTML = '<input id="act2" type="button" onclick="stand();return false" value="STAND">';
@@ -54,16 +266,16 @@
         let check = 0
         let mark = [];
         let player_action = 0;
-
+        var z = 1;
 
         var you = new player("玩家", [], [], [], []);
         you.player_card_num[0] = 0;
         you.player_num[0] = 0;
-        you.special_A[0]=0;
+        you.special_A[0] = 0;
         var computer = new player("计算机", [], [], [], []);
         computer.player_card_num[0] = 0;
         computer.player_num[0] = 0;
-        computer.special_A[0]=0;
+        computer.special_A[0] = 0;
         start();
         show_table();
 
@@ -77,7 +289,7 @@
             this.player_card = player_card;
             this.player_card_num = player_card_num;
             this.player_num = player_num;
-            this.special_A=special_A;
+            this.special_A = special_A;
         }
 
         function restart() {
@@ -89,16 +301,28 @@
 
                 you.player_card_num[0] = 0;
                 you.player_num[0] = 0;
-                you.special_A[0]=0;
+                you.special_A[0] = 0;
                 computer.player_card_num[0] = 0;
                 computer.player_num[0] = 0;
-                computer.special_A[0]=0;
+                computer.special_A[0] = 0;
 
                 for (i = 0; i <= 52; i++) {
                     you.player_card[i] = 0;
                     computer.player_card[i] = 0;
                 }
-
+                var table_p = document.getElementById("tableboard_p");
+                for (var i = 3; i < table_p.rows[0].cells.length; i++) {
+                    table_p.rows[0].cells[i].innerHTML = "";
+                }
+                var table_c = document.getElementById("tableboard_c");
+                for (var i = table_c.rows[0].cells.length - 3; i >= 0; i--) {
+                    table_c.rows[0].cells[i].innerHTML = "";
+                }
+                let result = document.getElementById("bulletin")
+                result.innerText = "请做出选择";
+                let a = document.getElementById("biaoqing");
+                a.innerHTML = "<img src=\"image\\a.webp\" width=\"300px\" height=\"300px\" />";
+                z = 1;
                 start();
                 show_table();
 
@@ -125,57 +349,98 @@
 
         function show_card3() {
             let out = document.getElementById("out");
+            let card_image = " ";
+            let s_c = 0;
+            let s_p = 0;
             if (player_action != 2) {
                 out.innerText = computer.player_name + "的手牌：" + "总数" + computer.player_card_num[0] + "点数?" + "\n";
                 if (computer.player_card[1] <= 12) {
                     out.innerText = out.innerText + "暗牌" + " " + "黑桃" + (computer.player_card[1] % 13 + 1) + " "
+                    card_image = "黑桃" + (computer.player_card[1] % 13 + 1);
                 }
                 else if (computer.player_card[1] <= 25) {
                     out.innerText = out.innerText + "暗牌" + " " + "红桃" + (computer.player_card[1] % 13 + 1) + " "
+                    card_image = "红桃" + (computer.player_card[1] % 13 + 1);
                 }
                 else if (computer.player_card[1] <= 38) {
                     out.innerText = out.innerText + "暗牌" + " " + "梅花" + (computer.player_card[1] % 13 + 1) + " "
+                    card_image = "梅花" + (computer.player_card[1] % 13 + 1);
                 }
                 else {
                     out.innerText = out.innerText + "暗牌" + " " + "方块" + (computer.player_card[1] % 13 + 1) + " "
+                    card_image = "方块" + (computer.player_card[1] % 13 + 1);
                 }
                 out.innerText = out.innerText + "\n" + "\n";
+                console.log(card_image);
+                var table = document.getElementById("tableboard_c");
+                table.rows[0].cells[10].innerHTML = "<img src=\"image\\cardback1.png\" width=\"110x\" height=\"155px\"/>";
+                table.rows[0].cells[9].innerHTML = "<img src=\"image\\" + card_image + ".jpg\" />";
+                table.rows[0].cells[8].innerHTML = "<div class=\"score\"> ? </div>";
             }
             else if (player_action === 2) {
                 out.innerText = computer.player_name + "的手牌：" + "总数" + computer.player_card_num[0] + "点数" + computer.player_num[0] + "\n";
+                let card_image = " ";
                 for (i = 0; i < computer.player_card_num[0]; i++) {
                     if (computer.player_card[i] <= 12) {
                         out.innerText = out.innerText + " " + "黑桃" + (computer.player_card[i] % 13 + 1) + " "
+                        card_image = "黑桃" + (computer.player_card[i] % 13 + 1);
                     }
                     else if (computer.player_card[i] <= 25) {
                         out.innerText = out.innerText + " " + "红桃" + (computer.player_card[i] % 13 + 1) + " "
+                        card_image = "红桃" + (computer.player_card[i] % 13 + 1);
                     }
                     else if (computer.player_card[i] <= 38) {
                         out.innerText = out.innerText + " " + "梅花" + (computer.player_card[i] % 13 + 1) + " "
+                        card_image = "梅花" + (computer.player_card[i] % 13 + 1);
                     }
                     else {
                         out.innerText = out.innerText + " " + "方块" + (computer.player_card[i] % 13 + 1) + " "
+                        card_image = "方块" + (computer.player_card[i] % 13 + 1);
                     }
+                    var table = document.getElementById("tableboard_c");
+                    if (i == 0) {
+
+                        table.rows[0].cells[10].innerHTML = "<img src=\"image\\" + card_image + ".jpg\" />";
+                    }
+                    table.rows[0].cells[11 - computer.player_card_num[0]].innerHTML = "<img src=\"image\\" + card_image + ".jpg\" />";
+                    table.rows[0].cells[11 - computer.player_card_num[0] - 1].innerHTML = "<div class=\"score\">" + computer.player_num[0] + " </div>";
                 }
+
                 out.innerText = out.innerText + "\n" + "\n";
+                console.log(card_image);
+
+
             }
             out.innerText = out.innerText + you.player_name + "的手牌：" + "总数" + you.player_card_num[0] + "点数" + you.player_num[0] + "\n";
             for (i = 0; i < you.player_card_num[0]; i++) {
+                let card_image = " ";
                 if (you.player_card[i] <= 12) {
                     out.innerText = out.innerText + " " + "黑桃" + (you.player_card[i] % 13 + 1) + " "
+                    card_image = "黑桃" + (you.player_card[i] % 13 + 1);
                 }
                 else if (you.player_card[i] <= 25) {
                     out.innerText = out.innerText + " " + "红桃" + (you.player_card[i] % 13 + 1) + " "
+                    card_image = "红桃" + (you.player_card[i] % 13 + 1);
                 }
                 else if (you.player_card[i] <= 38) {
                     out.innerText = out.innerText + " " + "梅花" + (you.player_card[i] % 13 + 1) + " "
+                    card_image = "梅花" + (you.player_card[i] % 13 + 1);
                 }
                 else {
                     out.innerText = out.innerText + " " + "方块" + (you.player_card[i] % 13 + 1) + " "
+                    card_image = "方块" + (you.player_card[i] % 13 + 1);
                 }
+                var table = document.getElementById("tableboard_p");
+                console.log(card_image);
+                if (i == 0) {
+                    table.rows[0].cells[1].innerHTML = "<img src=\"image\\" + card_image + ".jpg\" />";
+                }
+                table.rows[0].cells[you.player_card_num[0]].innerHTML = "<img src=\"image\\" + card_image + ".jpg\" />";
+                table.rows[0].cells[you.player_card_num[0] + 1].innerHTML = "<div class=\"score\">" + you.player_num[0] + " </div>";
             }
             //out.innerText=out.innerText+"\n"+mark;
             out.innerText = out.innerText + "\n";
+
         }
 
         /*function show_card2(x){
@@ -228,26 +493,31 @@
                 card = Math.floor(Math.random() * 52);
                 check = check_mark(card);
                 if (check === 1) {
-                    x.player_card[x.player_card_num] = card;                  
-                    if(card%13+1===1){
-                        if(x.player_num<=10){
+                    x.player_card[x.player_card_num] = card;
+                    if (card % 13 + 1 === 1) {
+                        if (x.player_num[0] <= 10) {
                             x.player_num[0] += 11;
+                            x.special_A[0] = 1;
                         }
-                        else{
+                        else {
                             x.player_num[0] += 1;
                         }
-                        x.special_A[0]=1;
                     }
                     else if (card % 13 + 1 < 10) {
                         x.player_num[0] += card % 13 + 1;
+                        if (x.player_num[0] > 21 && x.special_A[0] === 1) {
+                            x.player_num[0] = x.player_num[0] - 10;
+                            x.special_A[0] = 0;
+                        }
                     }
                     else {
                         x.player_num[0] += 10;
+                        if (x.player_num[0] > 21 && x.special_A[0] === 1) {
+                            x.player_num[0] = x.player_num[0] - 10;
+                            x.special_A[0] = 0;
+                        }
                     }
-                    if(x.player_num>21&&x.special_A===1){
-                        x.player_num=x.player_num-10;
-                        x.special_A=0;
-                    }
+
                     x.player_card_num[0] = x.player_card_num[0] + 1;
                     add_card = 1;
                 }
@@ -260,6 +530,7 @@
                 }
             }
         }
+
 
         /*function get_card(x, y, z){
             card = Math.floor(Math.random() * 52);
@@ -313,7 +584,7 @@
 
         function show_table() {
             show_card3();
-            if (you.player_num[0] > 21) {
+            if (you.player_num[0] > 21 && you.special_A[0] === 0) {
                 player_action = 3;
                 computer_act();
             }
@@ -326,14 +597,24 @@
         function check_out() {
             show_card3();
             let r = document.getElementById("result")
+            let result = document.getElementById("bulletin")
             if (you.player_num[0] > 21 || (you.player_num[0] < computer.player_num[0] && computer.player_num[0] < 22)) {
                 r.innerText = r.innerText + "player:computer=" + you.player_num + ":" + computer.player_num + " " + "LOST" + "\n";
+                result.innerText = "玩家:电脑=" + you.player_num + ":" + computer.player_num + " " + "你输了！" + "\n";
+                z = 0;
+                lose();
             }
             else if (you.player_num[0] === computer.player_num[0]) {
-                r.innerText = r.innerText + "player:computer=" + you.player_num + ":" + computer.player_num + " " + "DRAW" + "\n";
+                r.innerText = r.innerText + "玩家:电脑=" + you.player_num + ":" + computer.player_num + " " + "DRAW" + "\n";
+                z = 0;
+                result.innerText = "玩家:电脑=" + you.player_num + ":" + computer.player_num + " " + "平局" + "\n";
+                pin();
             }
             else if ((you.player_num[0] > computer.player_num[0] && you.player_num[0] < 22) || computer.player_num > 21) {
-                r.innerText = r.innerText + "player:computer=" + you.player_num + ":" + computer.player_num + " " + "WIN" + "\n";
+                r.innerText = r.innerText + "玩家:电脑=" + you.player_num + ":" + computer.player_num + " " + "WIN" + "\n";
+                result.innerText = "玩家:电脑=" + you.player_num + ":" + computer.player_num + " " + "你赢了！" + "\n";
+                z = 0;
+                win();
             }
             else {
                 return 3;
@@ -362,6 +643,51 @@
             else {
                 document.write = "error";
             }
+        }
+
+        function tuo() {
+            if (z == 1) {
+                let b = document.getElementById("biaoqing");
+                b.innerHTML = "<img src=\"image\\b.png\" width=\"300px\" height=\"300px\" />";
+
+            }
+
+        }
+        function dai() {
+            if (z == 1) {
+                let c = document.getElementById("biaoqing");
+                c.innerHTML = "<img src=\"image\\a.webp\" width=\"300px\" height=\"300px\" />";
+            }
+
+        }
+        function win() {
+            let d = document.getElementById("biaoqing");
+            d.innerHTML = "<img src=\"image\\win.png\" width=\"300px\" height=\"300px\" />";
+        }
+        function lose() {
+            let d = document.getElementById("biaoqing");
+            d.innerHTML = "<img src=\"image\\lose.png\" width=\"300px\" height=\"300px\" />";
+        }
+        function pin() {
+            let d = document.getElementById("biaoqing");
+            d.innerHTML = "<img src=\"image\\pin.png\" width=\"300px\" height=\"300px\" />";
+        }
+        function bgm() {
+            var audio = document.getElementById("bgm");
+            if (audio.paused) {
+                audio.play();
+            }
+            else {
+                audio.pause();
+            }
+        }
+        function kai() {
+            let a = document.getElementById("wenben");
+            a.style.display = "block";
+        }
+        function guan() {
+            let a = document.getElementById("wenben");
+            a.style.display = "none";
         }
 
     </script>
